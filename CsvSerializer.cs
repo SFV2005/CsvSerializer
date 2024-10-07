@@ -9,18 +9,18 @@ namespace SerializerNamespace
 {
     public class CsvSerializer
     {
-        public string Serialize(object obj)
+        public string Serialize(object _obj)
         {
-            if (obj is null)
+            if (_obj is null)
             {
                 return "";
             }
 
-            var type = obj.GetType();            
+            var type = _obj.GetType();            
             var fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             var values = fields.Select(p =>
             {
-                var value = p.GetValue(obj);
+                var value = p.GetValue(_obj);
                 return value != null ? value.ToString() : "";
             });
 
